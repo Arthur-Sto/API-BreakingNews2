@@ -1,10 +1,23 @@
-const express = require('express') //chama tudo d dentro do pacote express
 const app = express() //executando o pacote express e colocando dentro da constante app
 
-// get = metodo http de pegar a resposta de um usuario.
-//quando o usuario acessa a rota /, executa a função de call back(função executada por tras de outra função, no caso, a get)
-app.get('/', (req, res) => {
-    res.send('Hello World')
-})
+import express from 'express';
+import connectDatabase from './src/database/db.js';
+import dotenv from "dotenv";
 
-app.listen(3000) //digo que o app esta sendo ouvido na porta 3000 
+import userRoute from './src/routes/user.route.js';
+import authRoute from './src/routes/auth.route.js';
+import newsRoute from './src/routes/news.route.js';
+import swaggerRoute from './src/routes/swagger.route.js';
+
+dotenv.config();
+
+const port = process.env.PORT || 3000;
+
+connectDatabase()
+app.use(express.json());
+app.use("/user", userRoute);
+app.use("/auth", authRoute);
+app.use("/news", newsRoute);
+app.use("/doc", swaggerRoute);
+
+app.listen(port, () => console.log(`Servidor rodando na porta ${port}`)); //digo que o app esta sendo ouvido na porta 3000 
