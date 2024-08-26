@@ -1,7 +1,6 @@
 {
-  "oppenapi": "3.0.0",
+  "openapi": "3.0.0",
   "info": {
-    "swagger": "2.0",
     "Title": "Breaking News API Documention",
     "Description": "In this documentation you will be able to consult the API end-points and also test all available router. Do not forget to register and carry out the authorization",
     "contact": {
